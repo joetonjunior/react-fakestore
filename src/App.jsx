@@ -2,27 +2,41 @@ import { useEffect, useState } from "react";
 import Card from "./components/Card";
 import Header from "./components/Header";
 
+//let produtosFiltrados = []
 const App = () => {
 
   const [produtos, setProdutos] = useState([]);
+  const [testejoe, setJoe] = useState([]);
 
   function buscarProdutos() {
     fetch("https://fakestoreapi.com/products")
       .then((response) => { return response.json() })
       .then((response) => {
         setProdutos(response)
+        setJoe(response) 
       })
   }
 
+
   function filtrarProdutos(categoria) {
-    
+  
   if (categoria != "All") {
-    let produtosFiltrados = produtos.filter((produto) => {
+    //retornaOriginal()
+    //produtosFiltrados = [];
+    //setProdutos(testejoe);
+    const produtosFiltrados = testejoe.filter((produto) => {
       return produto.category == categoria.toLowerCase();
     })
+    
+    //produtosFiltrados.push(produtosFiltrados.splice(0,1)[0]);
+    //produtosFiltrados.sort();
+    //produtosFiltrados = [...produtosFiltrados]
+    //produtosFiltrados = produtosFiltrados.reverse()
+    
     setProdutos(produtosFiltrados);
+    
   } else {
-    setProdutos(produtos);
+    setProdutos(testejoe);
   }
 }
 
